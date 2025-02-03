@@ -4,7 +4,7 @@ import './index.css';
 
 function App() {
   return (
-    <div style={{ backgroundColor: 'hsl(176, 87.90%, 93.50%)', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: 'hsla(60, 44.80%, 77.30%, 0.60)', minHeight: '100vh' }}>
       <Navbar />
       <AppRoutes />
     </div>

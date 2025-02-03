@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { Button, Input, Row, Col, Space, Modal, Form, Table, Select } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle, faPlus, faPencilAlt, faXmark, faCheck, faList  } from "@fortawesome/free-solid-svg-icons";
 import axiosInstance from "../services/http";
 import axios from "axios";
 
@@ -23,7 +23,7 @@ interface DataType {
 
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);  // Novo estado para o modal de detalhes
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false); 
   const [form] = Form.useForm();
   const [isSaving, setIsSaving] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); 
@@ -50,7 +50,7 @@ function Home() {
 
   const handleViewDetails = (record: DataType) => {
     setSelectedRecord(record); 
-    setIsDetailsModalOpen(true);  // Abre o modal de detalhes
+    setIsDetailsModalOpen(true); 
   };
 
   const handleSave = () => {
@@ -108,7 +108,7 @@ function Home() {
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    setIsDetailsModalOpen(false);  // Fecha o modal de detalhes
+    setIsDetailsModalOpen(false); 
     form.resetFields(); 
   };
 
@@ -210,8 +210,8 @@ function Home() {
       title: 'Ações',
       key: 'acoes',
       render: (_, record: any) => (
-        <Space size="middle" align="center" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-          <a style={{ display: 'flex', alignItems: 'center' }} title="Detalhes" onClick={() => handleViewDetails(record)}>
+        <Space size="middle" align="center" style={{ display: 'flex', justifyContent: 'center', width: '100%' }} >
+          <a style={{ display: 'flex', alignItems: 'center' }} title="Detalhes" onClick={() => handleViewDetails(record)} >
             <FontAwesomeIcon icon={faInfoCircle} style={{ marginRight: '8px', fontSize: '20px' }} />
           </a>
         </Space>
@@ -232,8 +232,8 @@ function Home() {
             style={{ width: "100%" }}  
             onClick={showModal}
           >
-            Cadastrar Novo Ponto Turístico
-            <FontAwesomeIcon icon={faPlus} style={{ marginLeft: "8px" }} />
+            Cadastrar ponto turistico
+            <FontAwesomeIcon icon={faPlus}/>
           </Button>
         </Col>
       </Row>
@@ -249,14 +249,15 @@ function Home() {
               size="small"
               style={{ width: "800px" }} 
             />
-            <Button
-              type="default"
-              onClick={handleListAll}
-              style={{ marginLeft: "10px", width: "150px" }}  
-              size="small"  
-            >
-              Listar Todos
-            </Button>
+          <Button
+            type="default"
+            onClick={handleListAll}
+            style={{ marginLeft: "10px", width: "150px" }}  
+            size="small"  
+          >
+            <FontAwesomeIcon icon={faList} style={{ marginRight: '8px' }} />
+            Listar Todos
+          </Button>
           </Space>
         </Col>
       </Row>
@@ -269,13 +270,14 @@ function Home() {
 
       <Modal
         title="Detalhes do Ponto Turístico"
-        open={isDetailsModalOpen}  // Usando o estado de modal de detalhes
+        open={isDetailsModalOpen}
         onCancel={handleCancel}
         footer={[ 
           <Button key="cancel" onClick={handleCancel}>
+            <FontAwesomeIcon icon={faXmark} style={{ marginRight: '8px' }} />
             Cancelar
           </Button>,
-        ]}
+        ]}        
       >
         {selectedRecord && (
           <div>
@@ -289,12 +291,17 @@ function Home() {
       </Modal>
 
       <Modal
-        title="Cadastrar Ponto Turístico"
+         title={
+          <span>
+            <FontAwesomeIcon icon={faPencilAlt} style={{ marginRight: '8px' }} />
+            Cadastrar ponto turistico
+          </span>
+        }
         open={isModalOpen}
         onCancel={handleCancel}
         footer={[ 
           <Button key="cancel" onClick={handleCancel}>
-            Cancelar
+            <FontAwesomeIcon icon={faXmark} style={{ marginRight: '8px' }} /> Cancelar
           </Button>,
           <Button
             key="save"
@@ -302,13 +309,13 @@ function Home() {
             onClick={handleSave}
             loading={isSaving}
           >
-            Salvar
+            <FontAwesomeIcon icon={faCheck} style={{ marginRight: '8px' }} /> Salvar
           </Button>,
         ]}
       >
         <Form form={form} layout="vertical">
           <Form.Item name="nome" label="Nome" rules={[{ required: true, message: 'Por favor, insira o nome!' }]}>
-            <Input />
+            <Input maxLength={255} />
           </Form.Item>
 
           <Form.Item label="Localização">
@@ -332,7 +339,14 @@ function Home() {
                   name="cidade" 
                   label="Cidade" 
                   rules={[{ required: true, message: 'Por favor, insira a cidade!' }]} >
-                  <Select placeholder="Selecione a cidade">
+                  <Select 
+                    placeholder="Selecione a cidade"
+                    showSearch
+                    optionFilterProp="children"
+                    filterOption={(input, option) =>
+                      option?.children.toLowerCase().includes(input.toLowerCase())
+                    }
+                  >
                     {cidades.map((cidade, index) => (
                       <Select.Option key={index} value={cidade}>
                         {cidade}
@@ -345,12 +359,13 @@ function Home() {
           </Form.Item>
 
           <Form.Item name="referencia" label="Referência">
-            <Input />
+            <Input maxLength={255} />
           </Form.Item>
 
           <Form.Item name="descricao" label="Descrição" rules={[{ required: true, message: 'Por favor, insira a descrição!' }]}>
             <Input.TextArea rows={3} />
           </Form.Item>
+
         </Form>
       </Modal>
     </div>
