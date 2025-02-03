@@ -1,55 +1,45 @@
-<<<<<<< HEAD
 # SinquiaFrontEnd
- 
-=======
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é o projeto Front-End do teste **Sinquia**, desenvolvido utilizando **React**, **TypeScript** e **Vite**.
 
-Currently, two official plugins are available:
+## Tecnologias Usadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: Biblioteca JavaScript para a construção de interfaces de usuário.
+- **TypeScript**: Superset de JavaScript que adiciona tipagem estática.
+- **Vite**: Ferramenta de build moderna, focada em velocidade e desempenho.
 
-## Expanding the ESLint configuration
+## Bibliotecas Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **FontAwesome**: Conjunto de ícones escaláveis e vetoriais, utilizado para adicionar ícones na interface do usuário.
+- **SweetAlert2**: Biblioteca para exibir caixas de diálogo bonitinhas e customizáveis, como alertas e modais.
+- **Axios**: Cliente HTTP baseado em Promises, utilizado para realizar requisições para APIs.
+- **API de Localidades**: Utilizada para buscar dados sobre locais, como estados e cidades.
+- **Tailwind CSS**: Framework CSS utilitário que permite construir rapidamente interfaces customizadas.
+- **React Bootstrap**: Biblioteca de componentes de interface baseados no popular framework Bootstrap, adaptados para React.
+- **Ant Design**: Conjunto de componentes UI para React, com uma estética clean e funcionalidades robustas.
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Configuração Inicial
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Este projeto utiliza o **Vite** com **Hot Module Replacement (HMR)** para um fluxo de desenvolvimento mais rápido. Abaixo, segue a configuração inicial para usar o Vite com o React e TypeScript.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Instalação
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
->>>>>>> b0f64dc (Initial Comit)
+1. Clone o repositório:
+
+   ```bash
+   git clone https://github.com/seu-usuario/SinquiaFrontEnd.git
+   cd SinquiaFrontEnd
+Instale as dependências do projeto:
+
+cd .\FrontSinquia\
+npm install
+
+Para rodar o projeto localmente, execute o comando:
+npm run dev
+
+Configuração do ESLint
+Este projeto já vem configurado com o ESLint para garantir a qualidade do código. Se você está desenvolvendo uma aplicação de produção, recomendamos adicionar regras adicionais de TypeScript.
+
+Licença
+Este projeto é de uso livre. Consulte a licença do repositório para mais detalhes.
